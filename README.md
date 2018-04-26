@@ -1,14 +1,3 @@
-# webpack3.8
-webpack3.8+vue2环境
-## Build Setup
-建议使用yarn
-``` bash
-# install dependencies
-yarn
+##[Demo](https://xjpeng.github.io/createjs_graphics_tool/dist/ "Demo")##
 
-# serve with hot reload at localhost:8080
-yarn run dev
-
-# build for production with minification
-yarn run build
-```
+将svg元素path转换为createjs的graphics对象
