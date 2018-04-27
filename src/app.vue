@@ -5,6 +5,7 @@ input{display:block;width:90%;padding:8px;}
 textarea{display:block;width:90%;padding:8px;}
 button{padding:10px 20px;cursor:pointer;}
 .tiny{font-size:12px;line-height:180%;}
+.scale{padding:10px 10px;width:50px;display:inline-block;margin-right:30px;}
 </style>
 <template>
 <div>
@@ -12,7 +13,7 @@ button{padding:10px 20px;cursor:pointer;}
    <p>
       <input v-model="path" placeholder="Svg path元素参数d的值" />
    </p>
-   <p><button @click="transform">转换</button></p>
+   <p>缩放比例: <input v-model="scale" class="scale"><button @click="transform">转换</button></p>
    <p>
      <textarea rows="8" v-model="rest"></textarea>
    </p>
@@ -39,13 +40,14 @@ export default {
      return {
 	     path:'',
 		 rest:'',
+		 scale:1,
 		 stage:null
 	 };
   },
   methods:{
       transform(){
 	     if(!this.path) return;
-	     var rest  = new this.svgpath(this.path).abs().unshort().unarc().round();
+	     var rest  = new this.svgpath(this.path).abs().unshort().unarc().scale(this.scale).round();
 		 rest.iterate(function(seg,index){
 		    if(seg.length<2){
 			   return ;
